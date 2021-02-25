@@ -34,7 +34,7 @@ public class CsvDataProviderTest {
     }
 
     @Test(dataProvider = "testData")
-    public void verifyLoginUsingCsv(String username, String password, String testDescription) {
-        System.out.print(username + " " + password + " " + testDescription + "\n");
+    public void verifyLoginUsingCsv(String username, String password, String testDescription, String thirdColumn) {
+        System.out.print(username + " " + password + " " + testDescription + thirdColumn + "\n");
     }
 }

@@ -11,9 +11,10 @@ import java.util.List;
 
 public class CsvDataProviderTest {
 
-    private Iterator<Object[]> parseCsvData(String fileName) throws IOException {
+    @DataProvider(name = "testData")
+    private Iterator<Object[]> parseCsvData() throws IOException {
         BufferedReader input = null;
-        File file = new File(fileName);
+        File file = new File("src/main/resources/CsvData.csv");
         input = new BufferedReader(new FileReader(file));
         String line = null;
         List<Object[]> data = new ArrayList<>();
@@ -30,11 +31,6 @@ public class CsvDataProviderTest {
         }
         input.close();
         return data.iterator();
-    }
-
-    @DataProvider(name = "testData")
-    public Iterator<Object[]> testData() throws IOException {
-        return parseCsvData("src/main/resources/CsvData.csv");
     }
 
     @Test(dataProvider = "testData")

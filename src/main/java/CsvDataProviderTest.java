@@ -17,14 +17,16 @@ public class CsvDataProviderTest {
         input = new BufferedReader(new FileReader(file));
         String line = null;
         List<Object[]> data = new ArrayList<>();
-        while ((line = input.readLine()) != null) {
-            String in = line.trim();
-            String[] temp = in.split(",");
-            List<String> array = new ArrayList();
-            for (String s : temp) {
-                array.add(s);
+        for (int count = 0; (line = input.readLine()) != null; count++) {
+            if (count != 0) {
+                String in = line.trim();
+                String[] temp = in.split(",");
+                List<String> array = new ArrayList();
+                for (String s : temp) {
+                    array.add(s);
+                }
+                data.add(array.toArray());
             }
-            data.add(array.toArray());
         }
         input.close();
         return data.iterator();
@@ -37,8 +39,6 @@ public class CsvDataProviderTest {
 
     @Test(dataProvider = "testData")
     public void verifyLoginUsingCsv(String username, String password, String testDescription) {
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(testDescription);
+        System.out.print(username + " " + password + " " + testDescription + "\n");
     }
 }
